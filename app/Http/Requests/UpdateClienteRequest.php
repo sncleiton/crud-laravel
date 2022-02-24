@@ -18,15 +18,30 @@ class UpdateClienteRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
-        $rules = Cliente::$rules;
-        
-        return $rules;
+        return [
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email:rfc,dns|max:45',
+            'telefone' => 'required|celular_com_ddd',
+            'mensagem' => 'required',
+            'arquivo_anexo' => 'required|mimes:doc,docx,pdf,odt,txt|max:500'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nome.required' => 'O campo "Nome" é obrigatório!',
+            'nome.max' => 'Nome deve ter no maximo 255 caracteres!',
+            'email.required' => 'O campo "Email" é obrigatório!',
+            'email.email' => 'Email em formato inválido!',
+            'telefone.required' => 'Campo telefone é obrigatório!',
+            'telefone.celular_com_dd' => 'Padrão incorreto de Telefone! Favor digitar todos os 11 digitos',
+            'mensagem.required' => 'O campo "Mensagem" é obrigatória!',
+            'arquivo_anexo.required' => 'Anexar um arquivo é obrigatório!',
+            'arquivo_anexo.mimes' => 'Extensão inválida de arquivo anexo!',
+            'arquivo_anexo.max' => 'O tamanho do anexo excede o máximo de 500kb!',
+        ];
     }
 }

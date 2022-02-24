@@ -17,7 +17,7 @@
                    <div class="col-lg-12">
                        <div class="card">
                            <div class="card-body ">
-                                {!! Form::open(['route' => 'clientes.store']) !!}
+                                {!! Form::open(['route' => 'clientes.store', 'files' =>true]) !!}
                                     <div class="row">
                                         @include('clientes.fields')
                                     </div>

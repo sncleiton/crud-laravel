@@ -6,7 +6,11 @@ use App\Http\Requests\CreateClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
 use App\Repositories\ClienteRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Mail\EnviarEmailCliente;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Flash;
 use Response;
 
@@ -55,10 +59,14 @@ class ClienteController extends AppBaseController
     public function store(CreateClienteRequest $request)
     {
         $input = $request->all();
-
+        $anex = file_get_contents($input['arquivo_anexo']->getRealPath());
+        $input['arquivo_anexo'] = 'arquivos_'.$input['nome'].'/'.Carbon::now().'.'. $input['arquivo_anexo']->getClientOriginalExtension();
+        Storage::disk('local')->put($input['arquivo_anexo'], $anex);
+        $input['ip'] = $request->ip();
         $cliente = $this->clienteRepository->create($input);
-
-        Flash::success(__('messages.saved', ['model' => __('models/clientes.singular')]));
+        $email = new EnviarEmailCliente($cliente);
+        Mail::to(env('DESTINATION_MAIL'))->send($email);
+        Flash::success('Cliente registrado com sucesso.');
 
         return redirect(route('clientes.index'));
     }
