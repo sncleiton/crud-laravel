@@ -1,36 +1,49 @@
-# eSocial-teste
-
-
-Crie uma página de contato que contenha os seguintes campos:
-
-Nome
-E-mail
-Telefone
-Mensagem
-Arquivo Anexo
-
-A criação dessa página deve obedecer os seguintes requisitos:
-
-Os dados enviados deverão ser armazenados em um banco de dados e conter, além das informações exibidas, o ip do remetente e a data e hora do envio.
-
-Os dados informados devem ser validados utilizando as seguintes regras:
-
-Todos os campos são obrigatórios;
-O e-mail deve ser válido;
-O telefone deve ser válido;
-O arquivo deve ter no máximo 500kb e só deve ser aceito se o arquivo for pdf, doc, docx, odt ou txt;
-O arquivo enviado deve ser armazenado em disco. Apenas o caminho do arquivo deve ser armazenado no banco de dados.
-Uma mensagem deve ser enviada com as informações submetidas no formulário para um e-mail definido em um arquivo de configuração.
-
-Você deve exibir uma listagem com todos os contatos salvos
-
-Testes automatizados são bem vindos para garantir que a página funciona como esperado.
-
-Observações importantes
-Crie um projeto do zero com o Laravel
-Utilize qualquer biblioteca disponível no composer para realizar o teste;
-Utilize boostrap e vuejs para estruturar a página a ser exibida;
-Organização também é importante;
-A beleza mora nos detalhes!
-
-Por favor me envie o código zipado ou no github, com um readme sobre como fazer o deploy do projeto.
+# Teste eSocial
+## Passos para o Deploy:
+### Primeiramente deve-se clonar o projeto
+``` bash
+git clone https://github.com/Cd4sh/eSocial-teste
+```
+### Depois instalar os pacotes necessários
+``` bash
+composer install
+npm install
+npm run dev
+```
+### Alterar o nome do arquivo .env.example para .env
+``` bash
+cp .env.example .env
+```
+### Gerar a key do projeto
+``` bash
+php artisan key:generate
+```
+### Configurar no .env, os seguintes campos para o envio de e-mail
+``` bash
+MAIL_MAILER=smtp
+MAIL_HOST=HOST
+MAIL_PORT=587
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=
+MAIL_FROM_NAME=
+DESTINATION_MAIL=
+```
+### Configurar no .env, os seguintes campos para acesso ao banco de dados
+``` bash
+DB_CONNECTION=mysql
+DB_HOST=
+DB_PORT=
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+```
+### Criar as tabelas necessárias no banco de dados
+``` bash
+php artisan:migrate
+```
+### Subir a aplicação
+``` bash
+php artisan serve
+```
