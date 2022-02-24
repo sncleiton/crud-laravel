@@ -19,11 +19,13 @@
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
         "tightenco/ziggy": "^1.4",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "yajra/laravel-datatables-oracle": "~9.0",
+        "laravellegends/pt-br-validator": "^8.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "kitloong/laravel-migrations-generator": "^5.2",
         "laravel/sail": "^0.0.5",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",

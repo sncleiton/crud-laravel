@@ -3,3 +3,6 @@
         <i class=" fas fa-building"></i><span>Dashboard</span>
     </a>
 </li>
+<li class="{{ Request::is('clientes*') ? 'active' : '' }}">
+    <a href="{{ route('clientes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/clientes.plural')</span></a>
+</li>
