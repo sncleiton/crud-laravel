@@ -37,7 +37,7 @@ class UpdateClienteRequest extends FormRequest
             'email.required' => 'O campo "Email" é obrigatório!',
             'email.email' => 'Email em formato inválido!',
             'telefone.required' => 'Campo telefone é obrigatório!',
-            'telefone.celular_com_dd' => 'Padrão incorreto de Telefone! Favor digitar todos os 11 digitos',
+            'telefone.celular_com_dd' => 'Telefone fora do padrão (99)99999-9999!',
             'mensagem.required' => 'O campo "Mensagem" é obrigatória!',
             'arquivo_anexo.required' => 'Anexar um arquivo é obrigatório!',
             'arquivo_anexo.mimes' => 'Extensão inválida de arquivo anexo!',
